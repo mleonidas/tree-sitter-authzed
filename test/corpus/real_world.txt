@@ -1,0 +1,217 @@
+================================================================================
+example 1
+================================================================================
+
+definition dev_test/test {
+  relation parent: dev_test/object | dev_test/repo
+  permission member = creator + direct_member
+}
+
+--------------------------------------------------------------------------------
+(source_file
+     (body
+       (block
+         (identifier)
+         (identifier)
+         (block_start)
+         (body
+           (relation
+             (relation_literal)
+             (identifier)
+             (perm_expression
+               (identifier)
+               (pipe_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier))))
+         (block_end))))
+
+
+
+
+================================================================================
+example 2
+================================================================================
+definition dev_test/organization {
+	relation owner: dev_test/user
+	relation member: dev_test/user
+	relation view: dev_test/user
+	relation team_maintainer: dev_test/user
+	relation workspace_maintainer: dev_test/user
+	relation admin: dev_test/user
+	permission create_code = owner + member
+	permission read_code = create_code
+	permission update_code = delete_code
+	permission share_code = owner + admin
+	permission delete_code = owner + member + admin
+	permission create_page = owner + member
+	permission read_page = owner + member
+	permission update_page = owner + member
+	permission delete_page = owner + member
+	permission manage_billing = owner
+	permission update_team = owner + team_maintainer
+	permission change_team_name = team_maintainer + owner
+	permission delete_team = team_maintainer + owner
+	permission create_workspace = owner + admin
+	permission delete_workspace = owner
+	permission update_workspace = owner + workspace_maintainer
+	permission change_workspace_name = workspace_maintainer + owner
+}
+
+--------------------------------------------------------------------------------
+ (source_file
+     (body
+       (block
+         (identifier)
+         (identifier)
+         (block_start)
+         (body
+           (relation
+             (relation_literal)
+             (identifier)
+             (perm_expression
+               (identifier)))
+           (relation
+             (relation_literal)
+             (identifier)
+             (perm_expression
+               (identifier)))
+           (relation
+             (relation_literal)
+             (identifier)
+             (perm_expression
+               (identifier)))
+           (relation
+             (relation_literal)
+             (identifier)
+             (perm_expression
+               (identifier)))
+           (relation
+             (relation_literal)
+             (identifier)
+             (perm_expression
+               (identifier)))
+           (relation
+             (relation_literal)
+             (identifier)
+             (perm_expression
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
+             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier))))
+         (block_end))))

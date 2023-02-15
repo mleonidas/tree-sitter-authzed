@@ -1,0 +1,50 @@
+
+================================================================================
+permission
+================================================================================
+permission member = creator
+--------------------------------------------------------------------------------
+ (source_file
+     (body
+       (permission
+         (permission_literal)
+         (identifier)
+         (rel_expression
+         (identifier)))))
+
+
+
+================================================================================
+permission with plus
+================================================================================
+permission member = creator + parent
+--------------------------------------------------------------------------------
+ (source_file
+     (body
+       (permission
+         (permission_literal)
+         (identifier)
+         (rel_expression
+         (identifier)
+         (plus_literal)
+         (identifier)))))
+
+
+
+
+================================================================================
+permission with plus extra
+================================================================================
+permission member = creator + parent + parent->create_folder
+--------------------------------------------------------------------------------
+ (source_file
+     (body
+       (permission
+         (permission_literal)
+         (identifier)
+         (rel_expression
+         (identifier)
+         (plus_literal)
+         (identifier)
+         (plus_literal)
+         (identifier_with_parent)))))
