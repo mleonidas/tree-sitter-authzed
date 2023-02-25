@@ -38,4 +38,4 @@ You can also find a refrence to my neovim configuration in my dotfiles repo
 
 
 ## Example of the highlights
-![syntax](./docs/images/example-highlights.png)
+![syntax](./docs/images/example-highlight.png)
