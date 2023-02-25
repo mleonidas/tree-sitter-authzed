@@ -48,6 +48,7 @@ module.exports = grammar({
     slash_literal: ($) => "/",
     block_start: ($) => "{",
     block_end: ($) => "}",
+    equal_literal: ($) => "=",
 
     identifier: ($) =>
       token(seq(LETTER, repeat(choice(LETTER, UNICODE_LETTER)))),

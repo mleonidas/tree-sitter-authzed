@@ -1,13 +1,15 @@
 ; highlights.scm
+((identifier) @keyword
+ (#match? @keyword "^(definition|permission|relation)$"))
 
-((relation_literal) @keyword)
-((identifier) @property)
-((perm_expression) @operator)
+((permission_literal) @function)
+((relation_literal) @function)
 
-(block (identifier) @type)
-[
-  (rel_expression)
-  (perm_expression)
-] @string
-
-(comment) @comment
+(permission (identifier) @type)
+(relation (identifier) @constant)
+(perm_expression (identifier) @property)
+(rel_expression (identifier) @property)
+((block_start) @punctuation)
+((block_end) @punctuation)
+(block (identifier) (identifier) @constructor)
+((plus_literal) @punctuation)

@@ -177,6 +177,10 @@
       "type": "STRING",
       "value": "}"
     },
+    "equal_literal": {
+      "type": "STRING",
+      "value": "="
+    },
     "identifier": {
       "type": "TOKEN",
       "content": {
