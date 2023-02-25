@@ -23,7 +23,6 @@ definition dev_test/test {
                (pipe_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
@@ -102,31 +101,26 @@ definition dev_test/organization {
              (perm_expression
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
@@ -135,80 +129,68 @@ definition dev_test/organization {
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)))
            (permission
-             (permission_literal)
-             (identifier)
-             (rel_expression
-               (identifier)
-               (plus_literal)
-               (identifier)))
-           (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
-             (identifier)
-             (rel_expression
-               (identifier)))
-           (permission
-             (permission_literal)
              (identifier)
              (rel_expression
                (identifier)
                (plus_literal)
                (identifier)))
            (permission
-             (permission_literal)
+             (identifier)
+             (rel_expression
+               (identifier)))
+           (permission
+             (identifier)
+             (rel_expression
+               (identifier)
+               (plus_literal)
+               (identifier)))
+           (permission
              (identifier)
              (rel_expression
                (identifier)

@@ -1,5 +1,6 @@
 {
   "name": "authzed",
+  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "SYMBOL",
@@ -37,12 +38,8 @@
           "name": "identifier"
         },
         {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
           "type": "SYMBOL",
-          "name": "perm_expression"
+          "name": "rel_expression"
         }
       ]
     },
@@ -58,12 +55,8 @@
           "name": "identifier"
         },
         {
-          "type": "STRING",
-          "value": "="
-        },
-        {
           "type": "SYMBOL",
-          "name": "rel_expression"
+          "name": "perm_expression"
         }
       ]
     },
@@ -126,7 +119,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "pipe_literal"
+              "name": "plus_literal"
             }
           ]
         }
@@ -146,11 +139,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "plus_literal"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "identifier_with_parent"
+              "name": "pipe_literal"
             }
           ]
         }
@@ -163,6 +152,10 @@
     "permission_literal": {
       "type": "STRING",
       "value": "permission"
+    },
+    "definition_literal": {
+      "type": "STRING",
+      "value": "definition"
     },
     "plus_literal": {
       "type": "STRING",
@@ -194,11 +187,27 @@
             "members": [
               {
                 "type": "PATTERN",
-                "value": "\\p{ID_Start}"
+                "value": "\\p{L}"
+              },
+              {
+                "type": "STRING",
+                "value": ":"
               },
               {
                 "type": "STRING",
                 "value": "/"
+              },
+              {
+                "type": "STRING",
+                "value": "_"
+              },
+              {
+                "type": "STRING",
+                "value": "="
+              },
+              {
+                "type": "STRING",
+                "value": "->"
               }
             ]
           },
@@ -208,12 +217,37 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "PATTERN",
-                  "value": "\\p{ID_Continue}"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "\\p{L}"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ":"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "/"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "_"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "="
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "->"
+                    }
+                  ]
                 },
                 {
-                  "type": "STRING",
-                  "value": "/"
+                  "type": "PATTERN",
+                  "value": "\\p{L}"
                 }
               ]
             }
