@@ -2,7 +2,7 @@
 ((identifier) @keyword
  (#match? @keyword "^(definition|permission|relation)$"))
 
-((permission_literal) @function)
+((permission_literal) @variable.builtin)
 ((relation_literal) @function)
 
 (permission (identifier) @type)
@@ -13,3 +13,5 @@
 ((block_end) @punctuation)
 (block (identifier) (identifier) @constructor)
 ((plus_literal) @punctuation)
+((pipe_literal) @punctuation)
+((comment) @comment)
