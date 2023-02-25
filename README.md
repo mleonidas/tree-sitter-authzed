@@ -35,3 +35,7 @@ augroup END
 ```
 Hopefully once I package this appropriately and create a vim plugin all of this will be automatic
 You can also find a refrence to my neovim configuration in my dotfiles repo
+
+
+## Example of the highlights
+![syntax](./docs/images/example-highlights.png)
