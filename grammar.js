@@ -63,11 +63,7 @@ module.exports = grammar({
 
     comment: ($) =>
       token(
-        choice(
-          seq("#", /.*/),
-          seq("//", /.*/),
-          seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")
-        )
+        choice(seq("//", /.*/), seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"))
       ),
 
     _whitespace: ($) => token(/\s/),
