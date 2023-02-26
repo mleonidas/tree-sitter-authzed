@@ -30,16 +30,28 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "relation_literal"
+          "type": "FIELD",
+          "name": "relation",
+          "content": {
+            "type": "SYMBOL",
+            "name": "relation_literal"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "FIELD",
+          "name": "relation_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "rel_expression"
+          "type": "FIELD",
+          "name": "relation_expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "rel_expression"
+          }
         }
       ]
     },
@@ -47,16 +59,28 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "permission_literal"
+          "type": "FIELD",
+          "name": "permission",
+          "content": {
+            "type": "SYMBOL",
+            "name": "permission_literal"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "FIELD",
+          "name": "param_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "perm_expression"
+          "type": "FIELD",
+          "name": "permission_expresssion",
+          "content": {
+            "type": "SYMBOL",
+            "name": "perm_expression"
+          }
         }
       ]
     },

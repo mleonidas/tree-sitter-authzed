@@ -11,17 +11,19 @@ module.exports = grammar({
     source_file: ($) => $.body,
     body: ($) => repeat1(choice($.relation, $.permission, $.block)),
 
-    relation: ($) => seq($.relation_literal, $.identifier, $.rel_expression),
-    permission: ($) =>
-      seq($.permission_literal, $.identifier, $.perm_expression),
+    relation: ($) =>
+      seq(
+        field("relation", $.relation_literal),
+        field("relation_name", $.identifier),
+        field("relation_expression", $.rel_expression)
+      ),
 
-    // permission: ($) =>
-    //   seq(
-    //     "permission",
-    //     field("perm_name", $.identifier),
-    //     field("equal", "="),
-    //     field("relation_expression", $.rel_expression)
-    //   ),
+    permission: ($) =>
+      seq(
+        field("permission", $.permission_literal),
+        field("param_name", $.identifier),
+        field("permission_expresssion", $.perm_expression)
+      ),
 
     block: ($) =>
       seq(
@@ -39,7 +41,6 @@ module.exports = grammar({
       prec.right(repeat1(choice($.identifier, $.pipe_literal))),
 
     relation_literal: ($) => "relation",
-
     permission_literal: ($) => "permission",
     definition_literal: ($) => "definition",
 
