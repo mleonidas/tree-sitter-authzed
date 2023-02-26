@@ -205,6 +205,10 @@
       "type": "STRING",
       "value": "="
     },
+    "hash_literal": {
+      "type": "STRING",
+      "value": "#"
+    },
     "identifier": {
       "type": "TOKEN",
       "content": {
