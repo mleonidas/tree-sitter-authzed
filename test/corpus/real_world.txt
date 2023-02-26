@@ -31,6 +31,8 @@ definition dev_test/test {
                (identifier)
                (identifier)
                (plus_literal)
+               (identifier)
+               (stabby)
                (identifier))))
          (block_end))))
 

@@ -49,4 +49,6 @@ permission member = creator + parent + parent->create_folder
          (plus_literal)
          (identifier)
          (plus_literal)
+         (identifier)
+         (stabby)
          (identifier)))))

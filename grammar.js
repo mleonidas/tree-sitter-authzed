@@ -1,5 +1,5 @@
 const UNICODE_LETTER = /\p{L}/;
-const LETTER = choice(UNICODE_LETTER, ":", "/", "_", "=", "->");
+const LETTER = choice(UNICODE_LETTER, ":", "/", "_", "=");
 
 module.exports = grammar({
   name: "authzed",
