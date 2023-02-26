@@ -30,7 +30,7 @@ module.exports = grammar({
         $.identifier,
         repeat(choice($.slash_literal, $.identifier)),
         $.block_start,
-        optional($.body),
+        optional(repeat(choice($.relation, $.permission))),
         $.block_end
       ),
 

@@ -115,8 +115,20 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "body"
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "relation"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "permission"
+                  }
+                ]
+              }
             },
             {
               "type": "BLANK"

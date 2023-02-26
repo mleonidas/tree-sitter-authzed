@@ -16,11 +16,15 @@
           "named": true
         },
         {
-          "type": "body",
+          "type": "identifier",
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "permission",
+          "named": true
+        },
+        {
+          "type": "relation",
           "named": true
         },
         {

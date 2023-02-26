@@ -14,4 +14,16 @@
 (block (identifier) (identifier) @constructor)
 ((plus_literal) @punctuation)
 ((pipe_literal) @punctuation)
+((hash_literal) @comment)
+
+(rel_expression
+  (hash_literal)
+  (identifier) @constant)
+
+((stabby) @punctuation)
+
+(perm_expression
+  (stabby)
+  (identifier) @function)
+
 ((comment) @comment)
