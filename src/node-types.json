@@ -117,6 +117,10 @@
       "required": true,
       "types": [
         {
+          "type": "hash_literal",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -188,6 +192,10 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "hash_literal",
     "named": true
   },
   {

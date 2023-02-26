@@ -164,6 +164,10 @@
             {
               "type": "SYMBOL",
               "name": "pipe_literal"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "hash_literal"
             }
           ]
         }

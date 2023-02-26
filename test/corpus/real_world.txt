@@ -3,7 +3,7 @@ example 1
 ================================================================================
 
 definition dev_test/test {
-  relation parent: dev_test/object | dev_test/repo
+  relation parent: dev_test/object | dev_test/repo#member
   permission member = creator + direct_member
 }
 
@@ -21,6 +21,8 @@ definition dev_test/test {
              (rel_expression
                (identifier)
                (pipe_literal)
+               (identifier)
+               (hash_literal)
                (identifier)))
            (permission
            (permission_literal)
