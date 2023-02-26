@@ -35,7 +35,7 @@ module.exports = grammar({
       ),
 
     perm_expression: ($) =>
-      prec.right(repeat1(choice($.identifier, $.plus_literal))),
+      prec.right(repeat1(choice($.identifier, $.plus_literal, $.stabby))),
 
     rel_expression: ($) =>
       prec.right(repeat1(choice($.identifier, $.pipe_literal, $.hash_literal))),
@@ -47,6 +47,7 @@ module.exports = grammar({
     plus_literal: ($) => "+",
     pipe_literal: ($) => "|",
     slash_literal: ($) => "/",
+    stabby: ($) => "->",
     block_start: ($) => "{",
     block_end: ($) => "}",
     equal_literal: ($) => "=",
@@ -54,14 +55,6 @@ module.exports = grammar({
 
     identifier: ($) =>
       token(seq(LETTER, repeat(choice(LETTER, UNICODE_LETTER)))),
-
-    identifier_with_parent: ($) =>
-      token(
-        seq(
-          choice(/\p{ID_Start}/, "/"),
-          repeat(choice(/\p{ID_Continue}/, "->"))
-        )
-      ),
 
     comment: ($) =>
       token(

@@ -144,6 +144,10 @@
             {
               "type": "SYMBOL",
               "name": "plus_literal"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "stabby"
             }
           ]
         }
@@ -196,6 +200,10 @@
     "slash_literal": {
       "type": "STRING",
       "value": "/"
+    },
+    "stabby": {
+      "type": "STRING",
+      "value": "->"
     },
     "block_start": {
       "type": "STRING",
@@ -284,43 +292,6 @@
                 {
                   "type": "PATTERN",
                   "value": "\\p{L}"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    "identifier_with_parent": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "\\p{ID_Start}"
-              },
-              {
-                "type": "STRING",
-                "value": "/"
-              }
-            ]
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "\\p{ID_Continue}"
-                },
-                {
-                  "type": "STRING",
-                  "value": "->"
                 }
               ]
             }

@@ -4,7 +4,7 @@ example 1
 
 definition dev_test/test {
   relation parent: dev_test/object | dev_test/repo#member
-  permission member = creator + direct_member
+  permission member = creator + direct_member->admin
 }
 
 --------------------------------------------------------------------------------

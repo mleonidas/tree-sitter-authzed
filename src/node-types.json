@@ -68,6 +68,10 @@
         {
           "type": "plus_literal",
           "named": true
+        },
+        {
+          "type": "stabby",
+          "named": true
         }
       ]
     }
@@ -220,6 +224,10 @@
   },
   {
     "type": "slash_literal",
+    "named": true
+  },
+  {
+    "type": "stabby",
     "named": true
   }
 ]
