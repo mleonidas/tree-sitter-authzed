@@ -1,17 +1,32 @@
 {
-  "name": "tree-sitter-azd",
+  "name": "tree-sitter-authzed",
   "version": "1.0.0",
   "description": "Tree Sitter Parser for Authzed schema ",
   "main": "bindings/node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tree-sitter test",
+    "build": "tree-sitter generate"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+      "tree-sitter",
+      "authzed"
+  ],
+  "author": "mleonidas",
+  "license": "MIT",
   "dependencies": {
     "nan": "^2.17.0"
   },
+  "repository": "https://github.com/mleonidas/tree-sitter-authzed",
   "devDependencies": {
     "tree-sitter-cli": "^0.20.7"
-  }
+  },
+  "tree-sitter": [
+      {
+          "scope": "source.authzed",
+          "file-types": [
+              "authzed",
+              "zed"
+          ]
+      }
+  ]
 }
