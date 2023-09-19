@@ -1,32 +1,39 @@
 {
   "name": "tree-sitter-authzed",
   "version": "1.0.0",
-  "description": "Tree Sitter Parser for Authzed schema ",
+  "description": "Authzed grammer for tree-sitter",
   "main": "bindings/node",
   "scripts": {
     "test": "tree-sitter test",
+    "lint": "eslint grammar.js",
     "build": "tree-sitter generate"
   },
   "keywords": [
-      "tree-sitter",
-      "authzed"
+    "tree-sitter",
+    "parser",
+    "authzed"
   ],
   "author": "mleonidas",
   "license": "MIT",
   "dependencies": {
     "nan": "^2.17.0"
   },
-  "repository": "https://github.com/mleonidas/tree-sitter-authzed",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mleonidas/tree-sitter-authzed"
+  },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.7"
+    "eslint": "^8.45.0",
+    "eslint-config-google": "^0.14.0",
+    "tree-sitter-cli": "^0.20.8"
   },
   "tree-sitter": [
-      {
-          "scope": "source.authzed",
-          "file-types": [
-              "authzed",
-              "zed"
-          ]
-      }
+    {
+      "scope": "source.zed",
+      "file-types": [
+        "authzed",
+        "zed"
+      ]
+    }
   ]
 }

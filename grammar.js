@@ -1,8 +1,7 @@
-const UNICODE_LETTER = /\p{L}/;
-const LETTER = choice(UNICODE_LETTER, ":", "/", "_", "=");
+const UNICODE_LETTER = /\p{L}/, LETTER = choice(UNICODE_LETTER, ':', '/', '_', '=');
 
 module.exports = grammar({
-  name: "authzed",
+  name: 'authzed',
 
   extras: ($) => [$.comment, $._whitespace],
   word: ($) => $.identifier,
@@ -13,16 +12,16 @@ module.exports = grammar({
 
     relation: ($) =>
       seq(
-        field("relation", $.relation_literal),
-        field("relation_name", $.identifier),
-        field("relation_expression", $.rel_expression)
+        field('relation', $.relation_literal),
+        field('relation_name', $.identifier),
+        field('relation_expression', $.rel_expression),
       ),
 
     permission: ($) =>
       seq(
-        field("permission", $.permission_literal),
-        field("param_name", $.identifier),
-        field("permission_expresssion", $.perm_expression)
+        field('permission', $.permission_literal),
+        field('param_name', $.identifier),
+        field('permission_expresssion', $.perm_expression),
       ),
 
     block: ($) =>
@@ -31,7 +30,7 @@ module.exports = grammar({
         repeat(choice($.slash_literal, $.identifier)),
         $.block_start,
         optional(repeat(choice($.relation, $.permission))),
-        $.block_end
+        $.block_end,
       ),
 
     perm_expression: ($) =>
@@ -40,25 +39,25 @@ module.exports = grammar({
     rel_expression: ($) =>
       prec.right(repeat1(choice($.identifier, $.pipe_literal, $.hash_literal))),
 
-    relation_literal: ($) => "relation",
-    permission_literal: ($) => "permission",
-    definition_literal: ($) => "definition",
+    relation_literal: ($) => 'relation',
+    permission_literal: ($) => 'permission',
+    definition_literal: ($) => 'definition',
 
-    plus_literal: ($) => "+",
-    pipe_literal: ($) => "|",
-    slash_literal: ($) => "/",
-    stabby: ($) => "->",
-    block_start: ($) => "{",
-    block_end: ($) => "}",
-    equal_literal: ($) => "=",
-    hash_literal: ($) => "#",
+    plus_literal: ($) => '+',
+    pipe_literal: ($) => '|',
+    slash_literal: ($) => '/',
+    stabby: ($) => '->',
+    block_start: ($) => '{',
+    block_end: ($) => '}',
+    equal_literal: ($) => '=',
+    hash_literal: ($) => '#',
 
     identifier: ($) =>
       token(seq(LETTER, repeat(choice(LETTER, UNICODE_LETTER)))),
 
     comment: ($) =>
       token(
-        choice(seq("//", /.*/), seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"))
+        choice(seq('//', /.*/), seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/')),
       ),
 
     _whitespace: ($) => token(/\s/),
