@@ -1,37 +1,18 @@
 ================================================================================
-block definition
+block definition one line
 ================================================================================
 
-definition {
-}
+definition user {}
 
 --------------------------------------------------------------------------------
 
 (source_file
-      (statement
-        (block
-          (identifier)
-          (block_start)
-          (block_end))))
+ (definition
+  (identifier)
+  (block)))
 
 ================================================================================
-block definition on one line
-================================================================================
-
-definition {}
-
---------------------------------------------------------------------------------
-
-(source_file
-      (statement
-        (block
-          (identifier)
-          (block_start)
-          (block_end))))
-
-
-================================================================================
-block definition with object
+block definition with object brackets on different lines
 ================================================================================
 
 definition hello {
@@ -40,12 +21,9 @@ definition hello {
 --------------------------------------------------------------------------------
 
  (source_file
-      (statement
-        (block
-          (identifier)
-          (identifier)
-          (block_start)
-          (block_end))))
+      (definition
+        (identifier)
+        (block)))
 
 ================================================================================
 block definition with fullpath
@@ -56,10 +34,7 @@ definition flowcode/code {
 
 --------------------------------------------------------------------------------
 
-(source_file
-      (statement
-        (block
-          (identifier)
-          (identifier)
-          (block_start)
-          (block_end))))
+ (source_file
+      (definition
+        (identifier)
+        (block)))

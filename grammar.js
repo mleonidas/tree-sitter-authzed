@@ -66,17 +66,15 @@ module.exports = grammar({
   rules: {
     // source_file: ($) => $.body,
     source_file: ($) => seq(
-      repeat(choice(
-        seq($.statement, terminator),
-      )),
+      repeat(
+        seq($._top_level_declaration, terminator),
+      ),
     ),
 
 
-    statement: ($) => choice(
-      $.relation,
-      $.permission,
+    _top_level_declaration: ($) => choice(
       $.caveat,
-      $.block,
+      $.definition,
     ),
 
     relation: ($) =>
@@ -93,13 +91,18 @@ module.exports = grammar({
         field('permission_expresssion', $.perm_expression),
       ),
 
-    block: ($) =>
+
+    block: ($) => seq(
+      '{',
+      optional(repeat(choice($.relation, $.permission))),
+      '}',
+    ),
+
+    definition: ($) =>
       seq(
-        $.identifier,
-        repeat(choice($.slash_literal, $.identifier)),
-        $.block_start,
-        optional(repeat(choice($.relation, $.permission))),
-        $.block_end,
+        'definition',
+        field('name', repeat(choice($.slash_literal, $.identifier))),
+        field('body', $.block),
       ),
 
     caveat: ($) =>
@@ -138,8 +141,6 @@ module.exports = grammar({
 
     expression_list: ($) => commaSep1($._expression),
 
-
-
     _expression: ($) => choice(
       $.binary_expression,
       $.call_expression,
@@ -151,6 +152,7 @@ module.exports = grammar({
       $.nil,
       $.true,
       $.false,
+      $.selector_expression,
       $.parenthesized_expression,
     ),
 
@@ -158,6 +160,7 @@ module.exports = grammar({
     float_literal: (_) => token(floatLiteral),
     imaginary_literal: (_) => token(imaginaryLiteral),
 
+    _field_identifier: ($) => alias($.identifier, $.field_identifier),
 
     _string_literal: ($) => choice(
       $.raw_string_literal,
@@ -170,19 +173,11 @@ module.exports = grammar({
       '`',
     )),
 
-
-    // composite_literal: ($) => prec(PREC.composite_literal, seq(
-    //   field('type', choice(
-    //     $.slice_type,
-    //     $.array_type,
-    //     $.implicit_length_array_type,
-    //     $._type_identifier,
-    //     $.generic_type,
-    //     $.qualified_type,
-    //   )),
-    //   field('body', $.literal_value),
-    // )),
-        //
+    selector_expression: ($) => prec(PREC.primary, seq(
+      field('operand', $._expression),
+      '.',
+      field('field', $._field_identifier),
+    )),
 
     interpreted_string_literal: ($) => seq(
       '"',
@@ -320,7 +315,7 @@ module.exports = grammar({
       prec.right(repeat1(choice($.identifier, $.plus_literal, $.stabby))),
 
     rel_expression: ($) =>
-      prec.right(repeat1(choice($.identifier, $.pipe_literal, $.hash_literal))),
+      prec.right(repeat1(choice($.identifier, $.pipe_literal, $.hash_literal, $.wildcard_literal))),
 
 
     parenthesized_type: ($) => seq('(', $._type, ')'),
@@ -357,6 +352,7 @@ module.exports = grammar({
     hash_literal: (_) => '#',
     paren_open: (_) => '(',
     paren_close: (_) => ')',
+    wildcard_literal: (_) => '*',
 
     identifier: (_) =>
       token(seq(LETTER, repeat(choice(LETTER, UNICODE_LETTER)))),

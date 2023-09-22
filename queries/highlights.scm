@@ -1,16 +1,23 @@
-; highlights.scm
-((identifier) @keyword
- (#match? @keyword "^(definition|permission|relation)$"))
+((identifier) @function)
+
+(block
+  (relation
+    (relation_literal) @function
+     (identifier) @property))
+
+(block
+  (permission
+    (permission_literal) @function
+     (identifier) @property))
+
 
 ((permission_literal) @variable.builtin)
 
 (permission (identifier) @type)
 (relation (identifier) @constant)
 (perm_expression (identifier) @property)
-((block_start) @punctuation)
-((block_end) @punctuation)
 
-(block (identifier) (identifier) @constructor)
+
 
 ((plus_literal) @punctuation)
 ((hash_literal) @comment)
@@ -30,6 +37,14 @@
   (identifier) @constant
   ) @coment))
 
+(call_expression
+  (selector_expression
+    (identifier) @constant))
+
+(call_expression
+  function: (selector_expression
+    field: (field_identifier) @function.method))
+
 
 (permission
  (perm_expression
@@ -38,5 +53,18 @@
     .
     (identifier)
     @function) @punctuation))
+
+
+[
+  (true)
+  (false)
+  (nil)
+] @constant.builtin
+
+[
+ "caveat"
+ "definition"
+] @keyword
+
 
 ((comment) @comment)

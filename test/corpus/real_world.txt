@@ -10,11 +10,9 @@ definition dev_test/test {
 --------------------------------------------------------------------------------
 
 (source_file
- (statement
+ (definition
+  (identifier)
   (block
-   (identifier)
-   (identifier)
-   (block_start)
    (relation
     (relation_literal)
     (identifier)
@@ -33,10 +31,7 @@ definition dev_test/test {
      (plus_literal)
      (identifier)
      (stabby)
-     (identifier)))
-     (block_end))))
-
-
+     (identifier))))))
 
 
 ================================================================================
@@ -71,169 +66,166 @@ definition dev_test/organization {
 --------------------------------------------------------------------------------
 
 (source_file
- (statement
+(definition
+  (identifier)
   (block
-   (identifier)
-   (identifier)
-   (block_start)
-   (relation
-    (relation_literal)
-    (identifier)
-    (rel_expression
-     (identifier)))
-   (relation
-    (relation_literal)
-    (identifier)
-    (rel_expression
-     (identifier)))
-   (relation
-    (relation_literal)
-    (identifier)
-    (rel_expression
-     (identifier)))
-   (relation
-    (relation_literal)
-    (identifier)
-    (rel_expression
-     (identifier)))
     (relation
-     (relation_literal)
-     (identifier)
-     (rel_expression
-      (identifier)))
+      (relation_literal)
+      (identifier)
+      (rel_expression
+        (identifier)))
     (relation
-     (relation_literal)
-     (identifier)
-     (rel_expression
-      (identifier)))
+      (relation_literal)
+      (identifier)
+      (rel_expression
+        (identifier)))
+    (relation
+      (relation_literal)
+      (identifier)
+      (rel_expression
+        (identifier)))
+    (relation
+      (relation_literal)
+      (identifier)
+      (rel_expression
+        (identifier)))
+    (relation
+      (relation_literal)
+      (identifier)
+      (rel_expression
+        (identifier)))
+    (relation
+      (relation_literal)
+      (identifier)
+      (rel_expression
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier)))
     (permission
-     (permission_literal)
-     (identifier)
-     (perm_expression
+      (permission_literal)
       (identifier)
-      (identifier)
-      (plus_literal)
-      (identifier)))
-    (block_end))))
+      (perm_expression
+        (identifier)
+        (identifier)
+        (plus_literal)
+        (identifier))))))
