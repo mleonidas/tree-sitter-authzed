@@ -5,13 +5,15 @@ permission
 permission member = creator
 --------------------------------------------------------------------------------
 
-(source_file
-      (permission
-        (permission_literal)
-        (identifier)
-        (perm_expression
+ (source_file
+      (statement
+        (permission
+          (permission_literal)
           (identifier)
-          (identifier))))
+          (perm_expression
+            (identifier)
+            (identifier)))))
+
 
 
 ================================================================================
@@ -19,16 +21,16 @@ permission with plus
 ================================================================================
 permission member = creator + parent
 --------------------------------------------------------------------------------
-
  (source_file
-      (permission
-        (permission_literal)
-        (identifier)
-        (perm_expression
-          (identifier)
-          (identifier)
-          (plus_literal)
-          (identifier))))
+   (statement
+   (permission
+   (permission_literal)
+     (identifier)
+     (perm_expression
+       (identifier)
+       (identifier)
+       (plus_literal)
+       (identifier)))))
 
 ================================================================================
 permission with plus extra
@@ -36,16 +38,17 @@ permission with plus extra
 permission member = creator + parent + parent->create_folder
 --------------------------------------------------------------------------------
 
- (source_file
-      (permission
-        (permission_literal)
+(source_file
+  (statement
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
         (identifier)
-        (perm_expression
-          (identifier)
-          (identifier)
-          (plus_literal)
-          (identifier)
-          (plus_literal)
-          (identifier)
-          (stabby)
-          (identifier))))
+        (identifier)
+        (plus_literal)
+        (identifier)
+        (plus_literal)
+        (identifier)
+        (stabby)
+        (identifier)))))

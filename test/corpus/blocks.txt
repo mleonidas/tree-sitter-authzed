@@ -8,10 +8,11 @@ definition {
 --------------------------------------------------------------------------------
 
 (source_file
-    (block
-      (identifier)
-      (block_start)
-      (block_end)))
+      (statement
+        (block
+          (identifier)
+          (block_start)
+          (block_end))))
 
 ================================================================================
 block definition on one line
@@ -22,10 +23,12 @@ definition {}
 --------------------------------------------------------------------------------
 
 (source_file
-    (block
-      (identifier)
-      (block_start)
-      (block_end)))
+      (statement
+        (block
+          (identifier)
+          (block_start)
+          (block_end))))
+
 
 ================================================================================
 block definition with object
@@ -36,12 +39,13 @@ definition hello {
 
 --------------------------------------------------------------------------------
 
-(source_file
-    (block
-      (identifier)
-      (identifier)
-      (block_start)
-      (block_end)))
+ (source_file
+      (statement
+        (block
+          (identifier)
+          (identifier)
+          (block_start)
+          (block_end))))
 
 ================================================================================
 block definition with fullpath
@@ -53,8 +57,9 @@ definition flowcode/code {
 --------------------------------------------------------------------------------
 
 (source_file
-       (block
-         (identifier)
-         (identifier)
-         (block_start)
-         (block_end)))
+      (statement
+        (block
+          (identifier)
+          (identifier)
+          (block_start)
+          (block_end))))

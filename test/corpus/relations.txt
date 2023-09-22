@@ -6,11 +6,12 @@ relation member: dev_flowcode/organziation
 --------------------------------------------------------------------------------
 
 (source_file
+ (statement
   (relation
-    (relation_literal)
-    (identifier)
-      (rel_expression
-            (identifier))))
+   (relation_literal)
+   (identifier)
+   (rel_expression
+    (identifier)))))
 
 ================================================================================
 relation with extra
@@ -19,10 +20,11 @@ relation member: dev_flowcode/organziation | dev_flowcode/codes
 --------------------------------------------------------------------------------
 
 (source_file
+ (statement
   (relation
-    (relation_literal)
+   (relation_literal)
+   (identifier)
+   (rel_expression
     (identifier)
-      (rel_expression
-            (identifier)
-            (pipe_literal)
-            (identifier))))
+    (pipe_literal)
+    (identifier)))))
