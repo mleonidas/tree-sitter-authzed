@@ -1,36 +1,18 @@
 ================================================================================
-definition
+block definition one line
 ================================================================================
 
-definition {
-}
+definition user {}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (body
-    (block
-      (identifier)
-      (block_start)
-      (block_end))))
+ (definition
+  (identifier)
+  (block)))
 
 ================================================================================
-definition on one line
-================================================================================
-
-definition {}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (body
-    (block
-      (identifier)
-      (block_start)
-      (block_end))))
-
-================================================================================
-definition with object
+block definition with object brackets on different lines
 ================================================================================
 
 definition hello {
@@ -38,17 +20,13 @@ definition hello {
 
 --------------------------------------------------------------------------------
 
-(source_file
-  (body
-    (block
-      (identifier)
-      (identifier)
-      (block_start)
-      (block_end))))
-
+ (source_file
+      (definition
+        (identifier)
+        (block)))
 
 ================================================================================
-definition with fullpath
+block definition with fullpath
 ================================================================================
 
 definition flowcode/code {
@@ -56,10 +34,7 @@ definition flowcode/code {
 
 --------------------------------------------------------------------------------
 
-(source_file
-     (body
-       (block
-         (identifier)
-         (identifier)
-         (block_start)
-         (block_end))))
+ (source_file
+      (definition
+        (identifier)
+        (block)))

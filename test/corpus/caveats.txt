@@ -1,0 +1,50 @@
+================================================================================
+caveat definition
+================================================================================
+caveat my_caveat(first_parameter int, second_parameter string) {
+      first_parameter == 42 && second_parameter == "hello world"
+}
+--------------------------------------------------------------------------------
+
+(source_file
+ (caveat
+  (identifier)
+  (parameters_list
+   (parameter_declaration
+    (identifier))
+   (parameter_declaration
+    (identifier)))
+  (block_c
+   (expression_statement
+    (binary_expression
+     (binary_expression
+      (identifier)
+      (int_literal))
+     (binary_expression
+      (identifier)
+      (interpreted_string_literal)))))))
+
+
+================================================================================
+caveat definition
+================================================================================
+caveat my_caveat(first_parameter int, second_parameter string) {
+     first_parameter.isSubtreeOf(second_parameter)
+}
+--------------------------------------------------------------------------------
+(source_file
+ (caveat
+  (identifier)
+  (parameters_list
+   (parameter_declaration
+    (identifier))
+   (parameter_declaration
+    (identifier)))
+  (block_c
+   (expression_statement
+    (call_expression
+     (selector_expression
+      (identifier)
+      (field_identifier))
+     (argument_list
+      (identifier)))))))
