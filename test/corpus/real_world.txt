@@ -1,5 +1,5 @@
 ================================================================================
-example 1
+real_world example 1
 ================================================================================
 
 definition dev_test/test {
@@ -10,7 +10,6 @@ definition dev_test/test {
 --------------------------------------------------------------------------------
 
 (source_file
-    (body
       (block
         (identifier)
         (identifier)
@@ -34,12 +33,12 @@ definition dev_test/test {
             (identifier)
             (stabby)
             (identifier)))
-        (block_end))))
+        (block_end)))
 
 
 
 ================================================================================
-example 2
+real_world example 2
 ================================================================================
 definition dev_test/organization {
 	relation owner: dev_test/user
@@ -70,7 +69,6 @@ definition dev_test/organization {
 --------------------------------------------------------------------------------
 
  (source_file
-      (body
         (block
           (identifier)
           (identifier)
@@ -235,4 +233,4 @@ definition dev_test/organization {
               (identifier)
               (plus_literal)
               (identifier)))
-          (block_end))))
+          (block_end)))

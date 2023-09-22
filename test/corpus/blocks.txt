@@ -1,5 +1,5 @@
 ================================================================================
-definition
+block definition
 ================================================================================
 
 definition {
@@ -8,14 +8,13 @@ definition {
 --------------------------------------------------------------------------------
 
 (source_file
-  (body
     (block
       (identifier)
       (block_start)
-      (block_end))))
+      (block_end)))
 
 ================================================================================
-definition on one line
+block definition on one line
 ================================================================================
 
 definition {}
@@ -23,14 +22,13 @@ definition {}
 --------------------------------------------------------------------------------
 
 (source_file
-  (body
     (block
       (identifier)
       (block_start)
-      (block_end))))
+      (block_end)))
 
 ================================================================================
-definition with object
+block definition with object
 ================================================================================
 
 definition hello {
@@ -39,16 +37,14 @@ definition hello {
 --------------------------------------------------------------------------------
 
 (source_file
-  (body
     (block
       (identifier)
       (identifier)
       (block_start)
-      (block_end))))
-
+      (block_end)))
 
 ================================================================================
-definition with fullpath
+block definition with fullpath
 ================================================================================
 
 definition flowcode/code {
@@ -57,9 +53,8 @@ definition flowcode/code {
 --------------------------------------------------------------------------------
 
 (source_file
-     (body
        (block
          (identifier)
          (identifier)
          (block_start)
-         (block_end))))
+         (block_end)))
