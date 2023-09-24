@@ -40,7 +40,7 @@ local function get_query_captures()
 
   for i, line in ipairs(lines) do
     local caps = {}
-    for capture in line:gmatch("@(%a+)") do
+    for capture in line:gmatch("@([%a%.%-_]+)") do
       table.insert(caps, capture)
     end
     captures[i] = caps
