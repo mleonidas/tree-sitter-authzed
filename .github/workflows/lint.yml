@@ -16,3 +16,18 @@ jobs:
         run: npm install
       - name: Run ESLint
         run: npm run lint
+  check-queries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+      - name: Grab Query Check Script
+        run: |
+          curl https://raw.githubusercontent.com/nvim-treesitter/nvim-treesitter/main/CONTRIBUTING.md \
+            > ./captures_source
+      - name: Check Queries
+        run: |
+          ./.github/scripts/check-queries.lua
+
