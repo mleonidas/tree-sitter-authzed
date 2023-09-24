@@ -38,10 +38,12 @@ local function get_query_captures()
   local lines = vim.fn.readfile "queries/highlights.scm"
   local captures = {}
 
-  for _, line in ipairs(lines) do
+  for i, line in ipairs(lines) do
+    local caps = {}
     for capture in line:gmatch("@(%a+)") do
-      table.insert(captures, capture)
+      table.insert(caps, capture)
     end
+    captures[i] = caps
   end
 
   return captures
@@ -68,17 +70,19 @@ local function do_check()
   local query_type = "highlights"
 
   local query_captures = get_query_captures()
-  for _, capture in ipairs(query_captures) do
-    local is_valid = (
-    vim.startswith(capture, "_") -- Helpers.
-    or list_any(captures[query_type], function(documented_capture)
-      return vim.startswith(capture, documented_capture)
-    end)
-    )
-    if not is_valid then
-      local error = string.format("(x) Invalid capture @%s in %s for %s.", capture, query_type, lang)
-      io_print(error)
-      errored = true
+  for i, line_captures in pairs(query_captures) do
+    for _, capture in ipairs(line_captures) do
+      local is_valid = (
+      vim.startswith(capture, "_") -- Helpers.
+      or list_any(captures[query_type], function(documented_capture)
+        return vim.startswith(capture, documented_capture)
+      end)
+      )
+      if not is_valid then
+        local error = string.format("(x) Invalid capture @%s in %s on line %d for %s.", capture, query_type, i, lang)
+        io_print(error)
+        errored = true
+      end
     end
   end
 
