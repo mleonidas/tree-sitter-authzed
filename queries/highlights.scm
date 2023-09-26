@@ -35,7 +35,7 @@
   (hash_literal)
   .
   (identifier) @constant
-  ) @coment))
+  ) @comment))
 
 (call_expression
   (selector_expression
