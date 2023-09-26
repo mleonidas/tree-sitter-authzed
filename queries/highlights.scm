@@ -10,9 +10,6 @@
     (permission_literal) @function
      (identifier) @property))
 
-
-((permission_literal) @variable.builtin)
-
 (permission (identifier) @type)
 (relation (identifier) @constant)
 (perm_expression (identifier) @property)
