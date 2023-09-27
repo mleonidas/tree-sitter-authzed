@@ -426,6 +426,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "caveat_literal",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -456,6 +466,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "definition_literal",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1184,16 +1204,16 @@
     "named": false
   },
   {
-    "type": "caveat",
-    "named": false
+    "type": "caveat_literal",
+    "named": true
   },
   {
     "type": "comment",
     "named": true
   },
   {
-    "type": "definition",
-    "named": false
+    "type": "definition_literal",
+    "named": true
   },
   {
     "type": "double",

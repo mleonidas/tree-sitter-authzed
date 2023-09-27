@@ -62,8 +62,8 @@
 ] @constant.builtin
 
 [
- "caveat"
- "definition"
+ (caveat_literal)
+ (definition_literal)
 ] @keyword
 
 

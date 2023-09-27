@@ -8,6 +8,7 @@ caveat my_caveat(first_parameter int, second_parameter string) {
 
 (source_file
  (caveat
+  (caveat_literal)
   (identifier)
   (parameters_list
    (parameter_declaration
@@ -34,6 +35,7 @@ caveat my_caveat(first_parameter int, second_parameter string) {
 --------------------------------------------------------------------------------
 (source_file
  (caveat
+  (caveat_literal)
   (identifier)
   (parameters_list
    (parameter_declaration

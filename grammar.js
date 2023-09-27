@@ -100,14 +100,14 @@ module.exports = grammar({
 
     definition: ($) =>
       seq(
-        'definition',
+        $.definition_literal,
         field('name', repeat(choice($.slash_literal, $.identifier))),
         field('body', $.block),
       ),
 
     caveat: ($) =>
       seq(
-        'caveat',
+        $.caveat_literal,
         field('name', $.identifier),
         field('type_parameters', $.parameters_list),
         field('body', optional($.block_c)),
