@@ -8,6 +8,7 @@ definition user {}
 
 (source_file
  (definition
+  (definition_literal)
   (identifier)
   (block)))
 
@@ -22,6 +23,7 @@ definition hello {
 
  (source_file
       (definition
+        (definition_literal)
         (identifier)
         (block)))
 
@@ -36,5 +38,6 @@ definition flowcode/code {
 
  (source_file
       (definition
+        (definition_literal)
         (identifier)
         (block)))

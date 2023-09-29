@@ -148,8 +148,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "definition"
+          "type": "SYMBOL",
+          "name": "definition_literal"
         },
         {
           "type": "FIELD",
@@ -185,8 +185,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "caveat"
+          "type": "SYMBOL",
+          "name": "caveat_literal"
         },
         {
           "type": "FIELD",
