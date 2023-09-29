@@ -16,7 +16,12 @@
 
 
 
-((plus_literal) @punctuation)
+[
+  (plus_literal)
+  (minus_literal)
+  (amp_literal)
+] @punctuation
+
 ((hash_literal) @comment)
 
 ; relations

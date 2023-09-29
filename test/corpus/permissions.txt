@@ -1,0 +1,97 @@
+================================================================================
+simple permission
+================================================================================
+
+definition def {
+  relation example: def
+  permission member = example
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+ (definition
+  (definition_literal)
+  (identifier)
+  (block
+    (relation
+      (relation_literal)
+      (identifier)
+      (rel_expression
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
+        (identifier)
+        (identifier))))))
+
+================================================================================
+permission union/subtract/intersect
+================================================================================
+
+definition def {
+  relation rel: def
+
+  permission member = rel + rel - rel & rel
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (definition
+    (definition_literal)
+    (identifier)
+    (block
+      (relation
+        (relation_literal)
+        (identifier)
+        (rel_expression
+          (identifier)))
+      (permission
+        (permission_literal)
+        (identifier)
+        (perm_expression
+          (identifier)
+          (identifier)
+          (plus_literal)
+          (identifier)
+          (minus_literal)
+          (identifier)
+          (amp_literal)
+          (identifier))))))
+
+================================================================================
+permission parens
+================================================================================
+
+definition def {
+  relation rel: def
+
+  permission member = rel & (rel - rel)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (definition
+    (definition_literal)
+    (identifier)
+    (block
+      (relation
+        (relation_literal)
+        (identifier)
+        (rel_expression
+          (identifier)))
+      (permission
+        (permission_literal)
+        (identifier)
+        (perm_expression
+          (identifier)
+          (identifier)
+          (amp_literal)
+          (parenthesized_perm_expression
+            (perm_expression
+              (identifier)
+              (minus_literal)
+              (identifier))))))))

@@ -3395,11 +3395,40 @@
             },
             {
               "type": "SYMBOL",
+              "name": "minus_literal"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "amp_literal"
+            },
+            {
+              "type": "SYMBOL",
               "name": "stabby"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "parenthesized_perm_expression"
             }
           ]
         }
       }
+    },
+    "parenthesized_perm_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "perm_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "rel_expression": {
       "type": "PREC_RIGHT",
@@ -3518,6 +3547,14 @@
     "plus_literal": {
       "type": "STRING",
       "value": "+"
+    },
+    "minus_literal": {
+      "type": "STRING",
+      "value": "-"
+    },
+    "amp_literal": {
+      "type": "STRING",
+      "value": "&"
     },
     "pipe_literal": {
       "type": "STRING",
