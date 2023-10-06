@@ -312,7 +312,10 @@ module.exports = grammar({
     ),
 
     perm_expression: ($) =>
-      prec.right(repeat1(choice($.identifier, $.plus_literal, $.stabby))),
+      prec.right(repeat1(choice($.identifier, $.plus_literal, $.minus_literal, $.amp_literal, $.stabby, $.parenthesized_perm_expression))),
+
+    parenthesized_perm_expression: ($) =>
+      seq('(', $.perm_expression, ')'),
 
     rel_expression: ($) =>
       prec.right(repeat1(choice($.identifier, $.pipe_literal, $.hash_literal, $.wildcard_literal))),
@@ -343,6 +346,8 @@ module.exports = grammar({
     caveat_literal: (_) => 'caveat',
 
     plus_literal: (_) => '+',
+    minus_literal: (_) => '-',
+    amp_literal: (_) => '&',
     pipe_literal: (_) => '|',
     slash_literal: (_) => '/',
     stabby: (_) => '->',

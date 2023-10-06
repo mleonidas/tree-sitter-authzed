@@ -1,5 +1,10 @@
 [
   {
+    "type": "amp_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "argument_list",
     "named": true,
     "fields": {},
@@ -671,6 +676,11 @@
     }
   },
   {
+    "type": "minus_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "parameter_declaration",
     "named": true,
     "fields": {
@@ -811,6 +821,21 @@
     }
   },
   {
+    "type": "parenthesized_perm_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "perm_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parenthesized_type",
     "named": true,
     "fields": {},
@@ -834,7 +859,19 @@
       "required": true,
       "types": [
         {
+          "type": "amp_literal",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "minus_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesized_perm_expression",
           "named": true
         },
         {
