@@ -1,71 +1,130 @@
-((identifier) @function)
+; Keywords
+[
+  (caveat_literal)
+  (definition_literal)
+] @keyword
 
-(block
-  (relation
-    (relation_literal) @function
-     (identifier) @property))
+"import" @keyword.import
+"as" @keyword
 
-(block
-  (permission
-    (permission_literal) @variable.builtin
-     (identifier) @property))
+; Boolean literals
+[
+  (true)
+  (false)
+] @boolean
 
-(permission (identifier) @type)
-(relation (identifier) @constant)
-(perm_expression (identifier) @property)
+; Constants
+(nil) @constant.builtin
 
+; Comments
+[
+  (hash_literal)
+  (comment)
+] @comment
 
-
+; Operators
 [
   (plus_literal)
   (minus_literal)
   (amp_literal)
-] @punctuation
+  (pipe_literal)
+] @operator
 
-((hash_literal) @comment)
+(stabby) @operator
 
-; relations
-(rel_expression (identifier) @property)
+; Binary operators
+(binary_expression
+  operator: [
+    "=="
+    "!="
+    "<"
+    "<="
+    ">"
+    ">="
+    "in"
+    "&&"
+    "||"
+  ] @operator)
 
+; Top-level identifiers (definition/caveat names)
+(definition name: (identifier) @function)
+(caveat name: (identifier) @function)
 
-((pipe_literal) @punctuation)
+; Block structure with function.builtin
+(block
+  (relation
+    (relation_literal) @function.builtin
+    relation_name: (identifier) @constant))
+
+(block
+  (permission
+    (permission_literal) @variable.builtin
+    param_name: (identifier) @type))
+
+; Relations
+(rel_expression
+  (identifier) @type)
 
 (relation
   (rel_expression
-    (
-  (hash_literal)
-  .
-  (identifier) @constant
-  ) @comment))
-
-(call_expression
-  (selector_expression
+    (hash_literal)
+    .
     (identifier) @constant))
 
+; Permissions
+(perm_expression
+  (identifier) @property)
+
+; Function method calls
 (call_expression
   function: (selector_expression
+    operand: (identifier) @constant
     field: (field_identifier) @function.method))
 
+(perm_expression
+  (stabby) @operator
+  .
+  (identifier) @function)
 
-(permission
- (perm_expression
-   (
-    (stabby)
-    .
-    (identifier)
-    @function) @punctuation))
-
-
+; String literals
 [
-  (true)
-  (false)
-  (nil)
-] @constant.builtin
+  (raw_string_literal)
+  (interpreted_string_literal)
+] @string
 
+; Import statements
+(import_statement
+  path: (_) @string
+  alias: (identifier) @variable)
+
+; Parameters and types
+(parameter_declaration
+  name: (identifier) @parameter
+  type: (_) @type)
+
+(generic_type
+  base_type: (identifier) @type)
+
+; Built-in types
 [
- (caveat_literal)
- (definition_literal)
-] @keyword
+  "any"
+  "int"
+  "uint"
+  "bool"
+  "string"
+  "double"
+  "bytes"
+  "duration"
+  "timestamp"
+] @type.builtin
 
+; Wildcards
+(wildcard_literal) @operator
+(wildcard_type) @type.builtin
 
-((comment) @comment)
+; Numbers
+[
+  (int_literal)
+  (float_literal)
+  (imaginary_literal)
+] @number

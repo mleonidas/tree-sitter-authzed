@@ -28,7 +28,6 @@ definition dev_test/test {
     (identifier)
     (perm_expression
      (identifier)
-     (identifier)
      (plus_literal)
      (identifier)
      (stabby)
@@ -106,6 +105,24 @@ definition dev_test/organization {
       (identifier)
       (perm_expression
         (identifier)
+        (plus_literal)
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
+
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
+
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
         (identifier)
         (plus_literal)
         (identifier)))
@@ -113,27 +130,6 @@ definition dev_test/organization {
       (permission_literal)
       (identifier)
       (perm_expression
-        (identifier)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)
-        (plus_literal)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
         (identifier)
         (plus_literal)
         (identifier)
@@ -144,6 +140,12 @@ definition dev_test/organization {
       (identifier)
       (perm_expression
         (identifier)
+        (plus_literal)
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
         (identifier)
         (plus_literal)
         (identifier)))
@@ -152,6 +154,25 @@ definition dev_test/organization {
       (identifier)
       (perm_expression
         (identifier)
+        (plus_literal)
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
+        (identifier)
+        (plus_literal)
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
+
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
         (identifier)
         (plus_literal)
         (identifier)))
@@ -160,6 +181,12 @@ definition dev_test/organization {
       (identifier)
       (perm_expression
         (identifier)
+        (plus_literal)
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
         (identifier)
         (plus_literal)
         (identifier)))
@@ -168,6 +195,18 @@ definition dev_test/organization {
       (identifier)
       (perm_expression
         (identifier)
+        (plus_literal)
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
+
+        (identifier)))
+    (permission
+      (permission_literal)
+      (identifier)
+      (perm_expression
         (identifier)
         (plus_literal)
         (identifier)))
@@ -175,59 +214,6 @@ definition dev_test/organization {
       (permission_literal)
       (identifier)
       (perm_expression
-        (identifier)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)
-        (plus_literal)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)
-        (plus_literal)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)
-        (plus_literal)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)
-        (plus_literal)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
-        (identifier)
-        (plus_literal)
-        (identifier)))
-    (permission
-      (permission_literal)
-      (identifier)
-      (perm_expression
-        (identifier)
         (identifier)
         (plus_literal)
         (identifier))))))
