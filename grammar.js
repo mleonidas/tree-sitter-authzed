@@ -1,5 +1,4 @@
-const
-  PREC = {
+const PREC = {
     primary: 7,
     unary: 6,
     multiplicative: 5,
@@ -9,53 +8,57 @@ const
     or: 1,
     composite_literal: -1,
   },
-
   UNICODE_LETTER = /\p{L}/,
   LETTER = choice(UNICODE_LETTER, ':', '/', '_', '='),
   multiplicativeOperators = ['*', '/', '%', '<<', '>>', '&', '&^'],
   additiveOperators = ['+', '-', '|', '^'],
   comparativeOperators = ['==', '!=', '<', '<=', '>', '>=', 'in'],
-
-
   newline = '\n',
   terminator = choice(newline, ';', '\0'),
-
   hexDigit = /[0-9a-fA-F]/,
   octalDigit = /[0-7]/,
   decimalDigit = /[0-9]/,
   binaryDigit = /[01]/,
-
   hexDigits = seq(hexDigit, repeat(seq(optional('_'), hexDigit))),
   octalDigits = seq(octalDigit, repeat(seq(optional('_'), octalDigit))),
   decimalDigits = seq(decimalDigit, repeat(seq(optional('_'), decimalDigit))),
   binaryDigits = seq(binaryDigit, repeat(seq(optional('_'), binaryDigit))),
-
   hexLiteral = seq('0', choice('x', 'X'), optional('_'), hexDigits),
-  octalLiteral = seq('0', optional(choice('o', 'O')), optional('_'), octalDigits),
-  decimalLiteral = choice('0', seq(/[1-9]/, optional(seq(optional('_'), decimalDigits)))),
+  octalLiteral = seq(
+    '0',
+    optional(choice('o', 'O')),
+    optional('_'),
+    octalDigits,
+  ),
+  decimalLiteral = choice(
+    '0',
+    seq(/[1-9]/, optional(seq(optional('_'), decimalDigits))),
+  ),
   binaryLiteral = seq('0', choice('b', 'B'), optional('_'), binaryDigits),
-
   intLiteral = choice(binaryLiteral, decimalLiteral, octalLiteral, hexLiteral),
-
-  decimalExponent = seq(choice('e', 'E'), optional(choice('+', '-')), decimalDigits),
+  decimalExponent = seq(
+    choice('e', 'E'),
+    optional(choice('+', '-')),
+    decimalDigits,
+  ),
   decimalFloatLiteral = choice(
     seq(decimalDigits, '.', optional(decimalDigits), optional(decimalExponent)),
     seq(decimalDigits, decimalExponent),
     seq('.', decimalDigits, optional(decimalExponent)),
   ),
-
-  hexExponent = seq(choice('p', 'P'), optional(choice('+', '-')), decimalDigits),
+  hexExponent = seq(
+    choice('p', 'P'),
+    optional(choice('+', '-')),
+    decimalDigits,
+  ),
   hexMantissa = choice(
     seq(optional('_'), hexDigits, '.', optional(hexDigits)),
     seq(optional('_'), hexDigits),
     seq('.', hexDigits),
   ),
   hexFloatLiteral = seq('0', choice('x', 'X'), hexMantissa, hexExponent),
-
   floatLiteral = choice(decimalFloatLiteral, hexFloatLiteral),
-
   imaginaryLiteral = seq(choice(decimalDigits, intLiteral, floatLiteral), 'i');
-
 
 module.exports = grammar({
   name: 'authzed',
@@ -65,28 +68,18 @@ module.exports = grammar({
 
   rules: {
     // source_file: ($) => $.body,
-    source_file: ($) => seq(
-      repeat(
-        seq($._top_level_declaration, terminator),
-      ),
-    ),
+    source_file: ($) => seq(repeat(seq($._top_level_declaration, terminator))),
 
-
-    _top_level_declaration: ($) => choice(
-      $.caveat,
-      $.definition,
-      $.import_statement,
-    ),
+    _top_level_declaration: ($) =>
+      choice($.caveat, $.definition, $.import_statement),
 
     // Support for import statements in composable schemas
-    import_statement: ($) => seq(
-      'import',
-      field('path', $._string_literal),
-      optional(seq(
-        'as',
-        field('alias', $.identifier)
-      ))
-    ),
+    import_statement: ($) =>
+      seq(
+        'import',
+        field('path', $._string_literal),
+        optional(seq('as', field('alias', $.identifier))),
+      ),
 
     relation: ($) =>
       seq(
@@ -103,12 +96,8 @@ module.exports = grammar({
         field('permission_expresssion', $.perm_expression),
       ),
 
-
-    block: ($) => seq(
-      '{',
-      optional(repeat(choice($.relation, $.permission))),
-      '}',
-    ),
+    block: ($) =>
+      seq('{', optional(repeat(choice($.relation, $.permission))), '}'),
 
     definition: ($) =>
       seq(
@@ -125,48 +114,39 @@ module.exports = grammar({
         field('body', optional($.block_c)),
       ),
 
+    block_c: ($) => seq('{', optional($._statement_list), '}'),
 
-    block_c: ($) => seq(
-      '{',
-      optional($._statement_list),
-      '}',
-    ),
-
-    if_statement: ($) => seq(
-      optional(seq(
-        field('initializer', $._simple_statement),
-        ';',
-      )),
-      field('condition', $._expression),
-      field('consequence', $.block),
-      optional(seq(
-        'else',
-        field('alternative', choice($.block, $.if_statement)),
-      )),
-    ),
+    if_statement: ($) =>
+      seq(
+        optional(seq(field('initializer', $._simple_statement), ';')),
+        field('condition', $._expression),
+        field('consequence', $.block),
+        optional(
+          seq('else', field('alternative', choice($.block, $.if_statement))),
+        ),
+      ),
 
     expression_statement: ($) => $._expression,
 
-    _simple_statement: ($) => choice(
-      $.expression_statement,
-    ),
+    _simple_statement: ($) => choice($.expression_statement),
 
     expression_list: ($) => commaSep1($._expression),
 
-    _expression: ($) => choice(
-      $.binary_expression,
-      $.call_expression,
-      $.identifier,
-      $._string_literal,
-      $.int_literal,
-      $.float_literal,
-      $.imaginary_literal,
-      $.nil,
-      $.true,
-      $.false,
-      $.selector_expression,
-      $.parenthesized_expression,
-    ),
+    _expression: ($) =>
+      choice(
+        $.binary_expression,
+        $.call_expression,
+        $.identifier,
+        $._string_literal,
+        $.int_literal,
+        $.float_literal,
+        $.imaginary_literal,
+        $.nil,
+        $.true,
+        $.false,
+        $.selector_expression,
+        $.parenthesized_expression,
+      ),
 
     int_literal: (_) => token(intLiteral),
     float_literal: (_) => token(floatLiteral),
@@ -174,90 +154,82 @@ module.exports = grammar({
 
     _field_identifier: ($) => alias($.identifier, $.field_identifier),
 
-    _string_literal: ($) => choice(
-      $.raw_string_literal,
-      $.interpreted_string_literal,
-    ),
+    _string_literal: ($) =>
+      choice($.raw_string_literal, $.interpreted_string_literal),
 
-    raw_string_literal: (_) => token(seq(
-      '`',
-      repeat(/[^`]/),
-      '`',
-    )),
+    raw_string_literal: (_) => token(seq('`', repeat(/[^`]/), '`')),
 
-    selector_expression: ($) => prec(PREC.primary, seq(
-      field('operand', $._expression),
-      '.',
-      field('field', $._field_identifier),
-    )),
-
-    interpreted_string_literal: ($) => seq(
-      '"',
-      repeat(choice(
-        $._interpreted_string_literal_basic_content,
-        $.escape_sequence,
-      )),
-      token.immediate('"'),
-    ),
-
-    _interpreted_string_literal_basic_content: (_) => token.immediate(prec(1, /[^"\n\\]+/)),
-
-    escape_sequence: (_) => token.immediate(seq(
-      '\\',
-      choice(
-        /[^xuU]/,
-        /\d{2,3}/,
-        /x[0-9a-fA-F]{2,}/,
-        /u[0-9a-fA-F]{4}/,
-        /U[0-9a-fA-F]{8}/,
+    selector_expression: ($) =>
+      prec(
+        PREC.primary,
+        seq(
+          field('operand', $._expression),
+          '.',
+          field('field', $._field_identifier),
+        ),
       ),
-    )),
 
-
-    parenthesized_expression: ($) => seq(
-      '(',
-      $._expression,
-      ')',
-    ),
-
-    call_expression: ($) => prec(PREC.primary, choice(
+    interpreted_string_literal: ($) =>
       seq(
-        field('function', $.identifier),
-        field('arguments', alias($.special_argument_list, $.argument_list)),
+        '"',
+        repeat(
+          choice(
+            $._interpreted_string_literal_basic_content,
+            $.escape_sequence,
+          ),
+        ),
+        token.immediate('"'),
       ),
+
+    _interpreted_string_literal_basic_content: (_) =>
+      token.immediate(prec(1, /[^"\n\\]+/)),
+
+    escape_sequence: (_) =>
+      token.immediate(
+        seq(
+          '\\',
+          choice(
+            /[^xuU]/,
+            /\d{2,3}/,
+            /x[0-9a-fA-F]{2,}/,
+            /u[0-9a-fA-F]{4}/,
+            /U[0-9a-fA-F]{8}/,
+          ),
+        ),
+      ),
+
+    parenthesized_expression: ($) => seq('(', $._expression, ')'),
+
+    call_expression: ($) =>
+      prec(
+        PREC.primary,
+        choice(
+          seq(
+            field('function', $.identifier),
+            field('arguments', alias($.special_argument_list, $.argument_list)),
+          ),
+          seq(
+            field('function', $._expression),
+            field('type_arguments', optional($.type_arguments)),
+            field('arguments', $.argument_list),
+          ),
+        ),
+      ),
+
+    argument_list: ($) =>
       seq(
-        field('function', $._expression),
-        field('type_arguments', optional($.type_arguments)),
-        field('arguments', $.argument_list),
+        '(',
+        optional(
+          seq($._expression, repeat(seq(',', $._expression)), optional(',')),
+        ),
+        ')',
       ),
-    )),
 
-    argument_list: ($) => seq(
-      '(',
-      optional(seq(
-        $._expression,
-        repeat(seq(',', $._expression)),
-        optional(','),
-      )),
-      ')',
-    ),
+    special_argument_list: ($) =>
+      seq('(', $._type, repeat(seq(',', $._expression)), optional(','), ')'),
 
-    special_argument_list: ($) => seq(
-      '(',
-      $._type,
-      repeat(seq(',', $._expression)),
-      optional(','),
-      ')',
-    ),
-
-
-    type_arguments: ($) => prec.dynamic(2, seq(
-      '[',
-      commaSep1($._type),
-      optional(','),
-      ']',
-    )),
-
+    type_arguments: ($) =>
+      prec.dynamic(2, seq('[', commaSep1($._type), optional(','), ']')),
 
     binary_expression: ($) => {
       const table = [
@@ -268,135 +240,137 @@ module.exports = grammar({
         [PREC.or, '||'],
       ];
 
-      return choice(...table.map(([precedence, operator]) =>
-        // @ts-ignore
-        prec.left(precedence, seq(
-          field('left', $._expression),
+      return choice(
+        ...table.map(([precedence, operator]) =>
           // @ts-ignore
-          field('operator', operator),
-          field('right', $._expression),
-        )),
-      ));
+          prec.left(
+            precedence,
+            seq(
+              field('left', $._expression),
+              // @ts-ignore
+              field('operator', operator),
+              field('right', $._expression),
+            ),
+          ),
+        ),
+      );
     },
 
     _statement: ($) => $._simple_statement,
 
-    _statement_list: ($) => choice(
-      seq(
-        $._statement,
-        repeat(seq(terminator, $._statement)),
-        optional(seq(
-          terminator,
-          optional(alias($.empty_labeled_statement, $.labeled_statement)),
-        )),
+    _statement_list: ($) =>
+      choice(
+        seq(
+          $._statement,
+          repeat(seq(terminator, $._statement)),
+          optional(
+            seq(
+              terminator,
+              optional(alias($.empty_labeled_statement, $.labeled_statement)),
+            ),
+          ),
+        ),
+        alias($.empty_labeled_statement, $.labeled_statement),
       ),
-      alias($.empty_labeled_statement, $.labeled_statement),
-    ),
 
-    empty_labeled_statement: ($) => seq(
-      field('label', alias($.identifier, $.label_name)),
-      ':',
-    ),
+    empty_labeled_statement: ($) =>
+      seq(field('label', alias($.identifier, $.label_name)), ':'),
 
-    parameters_list: ($) => seq(
-      '(',
-      optional(seq(
-        commaSep($.parameter_declaration),
-        optional(','),
-      )),
-      ')',
-    ),
+    parameters_list: ($) =>
+      seq(
+        '(',
+        optional(seq(commaSep($.parameter_declaration), optional(','))),
+        ')',
+      ),
 
-    parameter_declaration: ($) => prec.left(1, seq(
-      field('name', $.identifier),
-      field('type', $._type),
-    )),
+    parameter_declaration: ($) =>
+      prec.left(1, seq(field('name', $.identifier), field('type', $._type))),
 
     // Support for generic types like list<string>
-    generic_type: ($) => seq(
-      field('base_type', $.identifier),
-      '<',
-      field('type_params', commaSep1($._type)),
-      '>'
-    ),
+    generic_type: ($) =>
+      seq(
+        field('base_type', $.identifier),
+        '<',
+        field('type_params', commaSep1($._type)),
+        '>',
+      ),
 
-    _type: ($) => choice(
-      $._simple_type,
-      $.generic_type,
-      $.parenthesized_type,
-    ),
+    _type: ($) => choice($._simple_type, $.generic_type, $.parenthesized_type),
 
-    variadic_parameter_declaration: ($) => seq(
-      field('name', optional($.identifier)),
-      '...',
-      field('type', $._type),
-    ),
+    variadic_parameter_declaration: ($) =>
+      seq(field('name', optional($.identifier)), '...', field('type', $._type)),
 
     perm_expression: ($) =>
-      prec.right(repeat1(choice(
-        $.perm_method_call,
-        $.identifier,
-        $.plus_literal,
-        $.minus_literal,
-        $.amp_literal,
-        $.stabby,
-        $.parenthesized_perm_expression
-      ))),
+      prec.right(
+        repeat1(
+          choice(
+            $.perm_method_call,
+            $.identifier,
+            $.plus_literal,
+            $.minus_literal,
+            $.amp_literal,
+            $.stabby,
+            $.parenthesized_perm_expression,
+          ),
+        ),
+      ),
 
-    parenthesized_perm_expression: ($) =>
-      seq('(', $.perm_expression, ')'),
+    parenthesized_perm_expression: ($) => seq('(', $.perm_expression, ')'),
 
     // Support for permission method calls (.all and .any operators)
-    perm_method_call: ($) => prec(PREC.primary, choice(
-      seq(
-        field('operand', $.identifier),
-        '.',
-        'all',
-        '(',
-        field('permission', $.identifier),
-        ')'
+    perm_method_call: ($) =>
+      prec(
+        PREC.primary,
+        choice(
+          seq(
+            field('operand', $.identifier),
+            '.',
+            'all',
+            '(',
+            field('permission', $.identifier),
+            ')',
+          ),
+          seq(
+            field('operand', $.identifier),
+            '.',
+            'any',
+            '(',
+            field('permission', $.identifier),
+            ')',
+          ),
+        ),
       ),
-      seq(
-        field('operand', $.identifier),
-        '.',
-        'any',
-        '(',
-        field('permission', $.identifier),
-        ')'
-      )
-    )),
 
     rel_expression: ($) =>
-      prec.right(repeat1(choice(
-        $.identifier,
-        $.pipe_literal,
-        $.hash_literal,
-        $.wildcard_literal,
-        $.wildcard_type
-      ))),
+      prec.right(
+        repeat1(
+          choice(
+            $.identifier,
+            $.pipe_literal,
+            $.hash_literal,
+            $.wildcard_literal,
+            $.wildcard_type,
+          ),
+        ),
+      ),
 
     // Support for wildcard types like user:*
-    wildcard_type: ($) => token(seq(
-      /[a-zA-Z_][a-zA-Z0-9_\/=]*/,
-      ':',
-      '*'
-    )),
-
+    wildcard_type: ($) => token(seq(/[a-zA-Z_][a-zA-Z0-9_\/=]*/, ':', '*')),
 
     parenthesized_type: ($) => seq('(', $._type, ')'),
 
-
-    _simple_type: (_) => choice(
-      'any',
-      'int',
-      'uint',
-      'bool',
-      'string',
-      'double',
-      'bytes',
-      'duration',
-      'timestamp'),
-
+    _simple_type: (_) =>
+      choice(
+        'any',
+        'int',
+        'uint',
+        'bool',
+        'string',
+        'double',
+        'bytes',
+        'duration',
+        'timestamp',
+      ),
 
     nil: (_) => 'nil',
     true: (_) => 'true',
@@ -433,7 +407,6 @@ module.exports = grammar({
   },
 });
 
-
 /**
  * Creates a rule to match one or more of the rules separated by a comma
  *
@@ -457,6 +430,5 @@ function commaSep1(rule) {
 function commaSep(rule) {
   return optional(commaSep1(rule));
 }
-
 
 // body: ($) => repeat1(choice($.relation, $.permission, $.block, $.caveat)),
