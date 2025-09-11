@@ -23,7 +23,6 @@ definition def {
       (permission_literal)
       (identifier)
       (perm_expression
-        (identifier)
         (identifier))))))
 
 ================================================================================
@@ -52,7 +51,6 @@ definition def {
         (permission_literal)
         (identifier)
         (perm_expression
-          (identifier)
           (identifier)
           (plus_literal)
           (identifier)
@@ -87,7 +85,6 @@ definition def {
         (permission_literal)
         (identifier)
         (perm_expression
-          (identifier)
           (identifier)
           (amp_literal)
           (parenthesized_perm_expression

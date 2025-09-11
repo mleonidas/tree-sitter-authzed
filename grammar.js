@@ -14,7 +14,7 @@ const
   LETTER = choice(UNICODE_LETTER, ':', '/', '_', '='),
   multiplicativeOperators = ['*', '/', '%', '<<', '>>', '&', '&^'],
   additiveOperators = ['+', '-', '|', '^'],
-  comparativeOperators = ['==', '!=', '<', '<=', '>', '>='],
+  comparativeOperators = ['==', '!=', '<', '<=', '>', '>=', 'in'],
 
 
   newline = '\n',
@@ -75,6 +75,17 @@ module.exports = grammar({
     _top_level_declaration: ($) => choice(
       $.caveat,
       $.definition,
+      $.import_statement,
+    ),
+
+    // Support for import statements in composable schemas
+    import_statement: ($) => seq(
+      'import',
+      field('path', $._string_literal),
+      optional(seq(
+        'as',
+        field('alias', $.identifier)
+      ))
     ),
 
     relation: ($) =>
@@ -88,6 +99,7 @@ module.exports = grammar({
       seq(
         field('permission', $.permission_literal),
         field('param_name', $.identifier),
+        '=',
         field('permission_expresssion', $.perm_expression),
       ),
 
@@ -295,13 +307,22 @@ module.exports = grammar({
       ')',
     ),
 
-    parameter_declaration: ($) => prec.left(seq(
-      commaSep(field('name', $.identifier)),
+    parameter_declaration: ($) => prec.left(1, seq(
+      field('name', $.identifier),
       field('type', $._type),
     )),
 
+    // Support for generic types like list<string>
+    generic_type: ($) => seq(
+      field('base_type', $.identifier),
+      '<',
+      field('type_params', commaSep1($._type)),
+      '>'
+    ),
+
     _type: ($) => choice(
       $._simple_type,
+      $.generic_type,
       $.parenthesized_type,
     ),
 
@@ -312,13 +333,54 @@ module.exports = grammar({
     ),
 
     perm_expression: ($) =>
-      prec.right(repeat1(choice($.identifier, $.plus_literal, $.minus_literal, $.amp_literal, $.stabby, $.parenthesized_perm_expression))),
+      prec.right(repeat1(choice(
+        $.perm_method_call,
+        $.identifier,
+        $.plus_literal,
+        $.minus_literal,
+        $.amp_literal,
+        $.stabby,
+        $.parenthesized_perm_expression
+      ))),
 
     parenthesized_perm_expression: ($) =>
       seq('(', $.perm_expression, ')'),
 
+    // Support for permission method calls (.all and .any operators)
+    perm_method_call: ($) => prec(PREC.primary, choice(
+      seq(
+        field('operand', $.identifier),
+        '.',
+        'all',
+        '(',
+        field('permission', $.identifier),
+        ')'
+      ),
+      seq(
+        field('operand', $.identifier),
+        '.',
+        'any',
+        '(',
+        field('permission', $.identifier),
+        ')'
+      )
+    )),
+
     rel_expression: ($) =>
-      prec.right(repeat1(choice($.identifier, $.pipe_literal, $.hash_literal, $.wildcard_literal))),
+      prec.right(repeat1(choice(
+        $.identifier,
+        $.pipe_literal,
+        $.hash_literal,
+        $.wildcard_literal,
+        $.wildcard_type
+      ))),
+
+    // Support for wildcard types like user:*
+    wildcard_type: ($) => token(seq(
+      /[a-zA-Z_][a-zA-Z0-9_\/=]*/,
+      ':',
+      '*'
+    )),
 
 
     parenthesized_type: ($) => seq('(', $._type, ')'),
@@ -333,7 +395,7 @@ module.exports = grammar({
       'double',
       'bytes',
       'duration',
-      'timestampt'),
+      'timestamp'),
 
 
     nil: (_) => 'nil',

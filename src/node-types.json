@@ -29,6 +29,10 @@
           "named": true
         },
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -203,6 +207,10 @@
           },
           {
             "type": "^",
+            "named": false
+          },
+          {
+            "type": "in",
             "named": false
           },
           {
@@ -547,97 +555,99 @@
     }
   },
   {
-    "type": "if_statement",
+    "type": "generic_type",
     "named": true,
     "fields": {
-      "alternative": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "block",
-            "named": true
-          },
-          {
-            "type": "if_statement",
-            "named": true
-          }
-        ]
-      },
-      "condition": {
+      "base_type": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "binary_expression",
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type_params": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "any",
+            "named": false
+          },
+          {
+            "type": "bool",
+            "named": false
+          },
+          {
+            "type": "bytes",
+            "named": false
+          },
+          {
+            "type": "double",
+            "named": false
+          },
+          {
+            "type": "duration",
+            "named": false
+          },
+          {
+            "type": "generic_type",
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "int",
+            "named": false
+          },
+          {
+            "type": "parenthesized_type",
             "named": true
           },
           {
-            "type": "false",
-            "named": true
+            "type": "string",
+            "named": false
           },
           {
-            "type": "float_literal",
-            "named": true
+            "type": "timestamp",
+            "named": false
           },
+          {
+            "type": "uint",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "import_statement",
+    "named": true,
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": false,
+        "types": [
           {
             "type": "identifier",
             "named": true
-          },
-          {
-            "type": "imaginary_literal",
-            "named": true
-          },
-          {
-            "type": "int_literal",
-            "named": true
-          },
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
           {
             "type": "interpreted_string_literal",
             "named": true
           },
           {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
             "type": "raw_string_literal",
-            "named": true
-          },
-          {
-            "type": "selector_expression",
-            "named": true
-          },
-          {
-            "type": "true",
-            "named": true
-          }
-        ]
-      },
-      "consequence": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "block",
-            "named": true
-          }
-        ]
-      },
-      "initializer": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "expression_statement",
             "named": true
           }
         ]
@@ -685,8 +695,8 @@
     "named": true,
     "fields": {
       "name": {
-        "multiple": true,
-        "required": false,
+        "multiple": false,
+        "required": true,
         "types": [
           {
             "type": "identifier",
@@ -719,6 +729,10 @@
             "named": false
           },
           {
+            "type": "generic_type",
+            "named": true
+          },
+          {
             "type": "int",
             "named": false
           },
@@ -731,7 +745,7 @@
             "named": false
           },
           {
-            "type": "timestampt",
+            "type": "timestamp",
             "named": false
           },
           {
@@ -844,6 +858,10 @@
       "required": false,
       "types": [
         {
+          "type": "generic_type",
+          "named": true
+        },
+        {
           "type": "parenthesized_type",
           "named": true
         }
@@ -875,6 +893,10 @@
           "named": true
         },
         {
+          "type": "perm_method_call",
+          "named": true
+        },
+        {
           "type": "plus_literal",
           "named": true
         },
@@ -883,6 +905,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "perm_method_call",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "permission": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -953,6 +1001,10 @@
         },
         {
           "type": "wildcard_literal",
+          "named": true
+        },
+        {
+          "type": "wildcard_type",
           "named": true
         }
       ]
@@ -1076,6 +1128,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1087,6 +1140,10 @@
         },
         {
           "type": "definition",
+          "named": true
+        },
+        {
+          "type": "import_statement",
           "named": true
         }
       ]
@@ -1100,6 +1157,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "generic_type",
+          "named": true
+        },
         {
           "type": "parenthesized_type",
           "named": true
@@ -1173,10 +1234,6 @@
     "named": false
   },
   {
-    "type": "...",
-    "named": false
-  },
-  {
     "type": "/",
     "named": false
   },
@@ -1198,6 +1255,10 @@
   },
   {
     "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
     "named": false
   },
   {
@@ -1229,7 +1290,15 @@
     "named": false
   },
   {
+    "type": "all",
+    "named": false
+  },
+  {
     "type": "any",
+    "named": false
+  },
+  {
+    "type": "as",
     "named": false
   },
   {
@@ -1246,7 +1315,8 @@
   },
   {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "definition_literal",
@@ -1258,10 +1328,6 @@
   },
   {
     "type": "duration",
-    "named": false
-  },
-  {
-    "type": "else",
     "named": false
   },
   {
@@ -1291,6 +1357,14 @@
   {
     "type": "imaginary_literal",
     "named": true
+  },
+  {
+    "type": "import",
+    "named": false
+  },
+  {
+    "type": "in",
+    "named": false
   },
   {
     "type": "int",
@@ -1329,7 +1403,7 @@
     "named": false
   },
   {
-    "type": "timestampt",
+    "type": "timestamp",
     "named": false
   },
   {
@@ -1339,6 +1413,10 @@
   {
     "type": "uint",
     "named": false
+  },
+  {
+    "type": "wildcard_type",
+    "named": true
   },
   {
     "type": "{",
