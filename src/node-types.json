@@ -1145,6 +1145,10 @@
         {
           "type": "import_statement",
           "named": true
+        },
+        {
+          "type": "use_statement",
+          "named": true
         }
       ]
     }
@@ -1163,6 +1167,32 @@
         },
         {
           "type": "parenthesized_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "use_statement",
+    "named": true,
+    "fields": {
+      "feature": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "use_literal",
           "named": true
         }
       ]
@@ -1413,6 +1443,10 @@
   {
     "type": "uint",
     "named": false
+  },
+  {
+    "type": "use_literal",
+    "named": true
   },
   {
     "type": "wildcard_type",

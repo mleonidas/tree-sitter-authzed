@@ -71,7 +71,7 @@ module.exports = grammar({
     source_file: ($) => seq(repeat(seq($._top_level_declaration, terminator))),
 
     _top_level_declaration: ($) =>
-      choice($.caveat, $.definition, $.import_statement),
+      choice($.caveat, $.definition, $.import_statement, $.use_statement),
 
     // Support for import statements in composable schemas
     import_statement: ($) =>
@@ -80,6 +80,10 @@ module.exports = grammar({
         field('path', $._string_literal),
         optional(seq('as', field('alias', $.identifier))),
       ),
+
+    // Support for feature flags, e.g. `use expiration`
+    use_statement: ($) =>
+      seq($.use_literal, field('feature', $.identifier)),
 
     relation: ($) =>
       seq(
@@ -380,6 +384,7 @@ module.exports = grammar({
     permission_literal: (_) => 'permission',
     definition_literal: (_) => 'definition',
     caveat_literal: (_) => 'caveat',
+    use_literal: (_) => 'use',
 
     plus_literal: (_) => '+',
     minus_literal: (_) => '-',

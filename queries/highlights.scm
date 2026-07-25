@@ -7,6 +7,11 @@
 "import" @keyword.import
 "as" @keyword
 
+; Feature flags, e.g. `use expiration`
+(use_literal) @keyword.import
+(use_statement
+  feature: (identifier) @constant.builtin)
+
 ; Boolean literals
 [
   (true)
