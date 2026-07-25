@@ -1,0 +1,59 @@
+================================================================================
+use statement
+================================================================================
+
+use expiration
+
+--------------------------------------------------------------------------------
+
+(source_file
+ (use_statement
+  (use_literal)
+  (identifier)))
+
+================================================================================
+use statement followed by definition
+================================================================================
+
+use expiration
+
+definition user {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+ (use_statement
+  (use_literal)
+  (identifier))
+ (definition
+  (definition_literal)
+  (identifier)
+  (block)))
+
+================================================================================
+use statement with expiring relation
+================================================================================
+
+use expiration
+
+definition assignment {
+	relation subject: user with expiration
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+ (use_statement
+  (use_literal)
+  (identifier))
+ (definition
+  (definition_literal)
+  (identifier)
+  (block
+   (relation
+    (relation_literal)
+    (identifier)
+    (rel_expression
+     (identifier)
+     (identifier)
+     (identifier))))))
